@@ -59,8 +59,17 @@ action(user.code_state_case): "case :"
 
 action(user.code_state_go_to): ""
 
-action(user.code_import): "import "
-
+action(user.code_import): 
+  insert('import  from \'\'')
+  key(left)
+  key(left)
+  key(left)
+  key(left)
+  key(left)
+  key(left)
+  key(left)
+  key(left)
+  
 action(user.code_from_import):
   insert(" from  \"\"")
   key(left)
@@ -111,10 +120,10 @@ action(user.code_operator_equal): " == "
 action(user.code_operator_not_equal): " != "
 (op | is) strict equal: " === "
 (op | is) strict not equal: " !== "
-action(user.code_operator_greater_than): " > "
-action(user.code_operator_greater_than_or_equal_to): " >= "
-action(user.code_operator_less_than): " < "
-action(user.code_operator_less_than_or_equal_to): " <= "
+action(user.code_operator_greater_than): ">"
+action(user.code_operator_greater_than_or_equal_to): ">="
+action(user.code_operator_less_than): "<"
+action(user.code_operator_less_than_or_equal_to): "<="
 action(user.code_operator_and): " && "
 action(user.code_operator_or): " || "
 action(user.code_operator_bitwise_and): " & "

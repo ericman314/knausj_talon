@@ -107,12 +107,15 @@ def letters(m) -> str:
 ctx = Context()
 ctx.lists["self.modifier_key"] = {
     # If you find 'alt' is often misrecognized, try using 'alter'.
-    "alt": "alt",  #'alter': 'alt',
-    "command": "cmd",
-    "control": "ctrl",  #'troll':   'ctrl',
-    "option": "alt",
-    "shift": "shift",  #'sky':     'shift',
+    "alt":   "alt",
+    'curl': 'ctrl',
+    'ship':   'shift',
     "super": "super",
+    #'alter': 'alt',
+    #"command": "cmd",
+    #"control": "ctrl",
+    #"option": "alt",
+    #"shift": "shift",  
 }
 alphabet = dict(zip(default_alphabet, letters_string))
 ctx.lists["self.letter"] = alphabet
@@ -213,8 +216,9 @@ simple_keys = [
 ]
 
 alternate_keys = {
-    "delete": "backspace",
-    "forward delete": "delete",
+    'back':'backspace',
+    "backspace": "backspace",
+    "delete": "delete",
     #'junk': 'backspace',
 }
 # mac apparently doesn't have the menu key.
