@@ -3,7 +3,11 @@ from typing import Set
 from talon import Module, Context, actions, app
 import sys
 
-default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
+# default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
+#     " "
+# )
+
+default_alphabet = "alpha bravo charlie delta echo foxtrot golf hotel india juliet kilo lima mike November oscar papa quebec romeo sierra tango uniform victor whiskey plex yankee zulu".split(
     " "
 )
 letters_string = "abcdefghijklmnopqrstuvwxyz"
@@ -107,9 +111,9 @@ def letters(m) -> str:
 ctx = Context()
 ctx.lists["self.modifier_key"] = {
     # If you find 'alt' is often misrecognized, try using 'alter'.
-    "alt":   "alt",
-    'curl': 'ctrl',
-    'ship':   'shift',
+    "alter":   "alt",
+    'troll': 'ctrl',
+    'sky':   'shift',
     "super": "super",
     #'alter': 'alt',
     #"command": "cmd",
@@ -229,7 +233,7 @@ keys = {k: k for k in simple_keys}
 keys.update(alternate_keys)
 ctx.lists["self.special_key"] = keys
 ctx.lists["self.function_key"] = {
-    f"F {default_f_digits[i]}": f"f{i + 1}" for i in range(12)
+    f"fox {default_f_digits[i]}": f"f{i + 1}" for i in range(12)
 }
 
 
