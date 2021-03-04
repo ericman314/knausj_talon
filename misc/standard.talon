@@ -25,7 +25,7 @@ wipe: key(backspace)
 # (pad | padding): 
 # 	insert("  ") 
 # 	key(left)
-reslap:
+back slap:
 	edit.line_start()
 	key(enter)
   key(up)	

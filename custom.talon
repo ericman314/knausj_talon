@@ -53,25 +53,57 @@ inline if:
 times:
   insert('*')
 
+len:
+  insert('(')
+
+ren:
+  insert(')')
+
+langle:
+  insert('<')
+
+wrangle:
+  insert('>')
+
+locks:
+  insert('[')
+  
+rocks:
+  insert(']')
+
+lace:
+  insert('{')
+
+race:
+  insert('}')
+
 comment:
   key(ctrl-/)
 
-for loop:
+for loop index:
   insert('for (let i = 0; ; i++ ) {}')
   key(left enter up end left left left left left left left left left)
  
-for in:
+for loop in:
   insert('for (let  in ) {}')
   key(left enter up end left left left left left left left)
  
-for of:
+for loop of:
   insert('for (let  of ) {}')
   key(left enter up end left left left left left left left)
 
-seek line <number>:
+jump line <number>:
   key(ctrl-g)
   insert(number)
   key(enter)
+
+jump <user.text>:
+  key(home)
+  key(ctrl-f)
+  insert(user.text)
+  sleep(100ms)
+  key(escape)
+  key(left)
 
 jump bracket:
   key(ctrl-shift-\)
@@ -127,8 +159,8 @@ quick open:
 file open:
   key(ctrl-o)
 
-# to do:
-#   insert('TODO: ')
+to do:
+  insert('TODO: ')
 
 tick:
   insert('`')
@@ -189,3 +221,5 @@ refresh:
 square root:
   insert('sqrt')
 
+throw error:
+  insert('throw new Error(\'')

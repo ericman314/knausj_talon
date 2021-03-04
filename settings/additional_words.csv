@@ -23,6 +23,7 @@ div
 ls
 theta
 oshcut
+oshlib
 app
 arcify
 collinear
@@ -31,3 +32,6 @@ queued
 queuing
 yeah
 toggle
+enthalpy
+denest
+denesting
