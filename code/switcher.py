@@ -6,6 +6,7 @@ import talon
 from talon import Context, Module, app, imgui, ui, fs, actions
 from glob import glob
 from itertools import islice
+from pathlib import Path
 
 # Construct at startup a list of overides for application names (similar to how homophone list is managed)
 # ie for a given talon recognition word set  `one note`, recognized this in these switcher functions as `ONENOTE`
@@ -180,7 +181,7 @@ def update_lists():
 
         words = get_words(name)
         for word in words:
-            if word and word not in running:
+            if word and word not in running and len(word) >= 3:
                 running[word.lower()] = cur_app.name
 
         running[name.lower()] = cur_app.name
@@ -244,29 +245,27 @@ class Actions:
         # We should use the capture result directly if it's already in the list
         # of running applications. Otherwise, name is from <user.text> and we
         # can be a bit fuzzier
-        if name in running_application_dict:
-            for app in ui.apps():
-                if app.name == name and not app.background:
-                    return app
-            raise RuntimeError(f'App not running: "{name}"')
-        else:
-            # Don't process silly things like "focus i"
+        if name not in running_application_dict:
             if len(name) < 3:
                 raise RuntimeError(
                     f'Skipped getting app: "{name}" has less than 3 chars.'
                 )
-
-            for running_name, app in ctx.lists["self.running"].items():
+            for running_name, full_application_name in ctx.lists[
+                "self.running"
+            ].items():
                 if running_name == name or running_name.lower().startswith(
                     name.lower()
                 ):
-                    return app
-
-            raise RuntimeError(f'Could not find app "{name}"')
+                    name = full_application_name
+                    break
+        for app in ui.apps():
+            if app.name == name and not app.background:
+                return app
+        raise RuntimeError(f'App not running: "{name}"')
 
     def switcher_focus(name: str):
-        """Focus a new application by  name"""
-        app = actions.self.get_running_app(name)
+        """Focus a new application by name"""
+        app = actions.user.get_running_app(name)
         app.focus()
 
         # Hacky solution to do this reliably on Mac.
@@ -279,15 +278,28 @@ class Actions:
     def switcher_launch(path: str):
         """Launch a new application by path"""
         if app.platform == "windows":
-            if "." not in path:
+            is_valid_path = False
+            try:
+                current_path = Path(path)
+                is_valid_path = current_path.is_file()
+                # print("valid path: {}".format(is_valid_path))
+
+            except:
+                # print("invalid path")
+                is_valid_path = False
+
+            if is_valid_path:
+                # print("path: " + path)
+                ui.launch(path=path)
+
+            else:
+                # print("envelop")
                 actions.key("super-s")
                 actions.sleep("300ms")
                 actions.insert("apps: {}".format(path))
                 actions.sleep("150ms")
                 actions.key("enter")
-            else:
-                # print("path: " + path)
-                os.startfile(path)
+
         else:
             ui.launch(path=path)
 
@@ -303,7 +315,7 @@ class Actions:
         gui.hide()
 
 
-@imgui.open(software=app.platform == "linux")
+@imgui.open()
 def gui(gui: imgui.GUI):
     gui.text("Names of running applications")
     gui.line()
@@ -314,17 +326,18 @@ def gui(gui: imgui.GUI):
 def update_launch_list():
     launch = {}
     if app.platform == "mac":
-        for base in "/Applications", "/Applications/Utilities":
-            for name in os.listdir(base):
-                path = os.path.join(base, name)
-                name = name.rsplit(".", 1)[0].lower()
-                launch[name] = path
-                words = name.split(" ")
-                for word in words:
-                    if word and word not in launch:
-                        if len(name) > 6 and len(word) < 3:
-                            continue
-                        launch[word] = path
+        for base in mac_application_directories:
+            if os.path.isdir(base):
+                for name in os.listdir(base):
+                    path = os.path.join(base, name)
+                    name = name.rsplit(".", 1)[0].lower()
+                    launch[name] = path
+                    words = name.split(" ")
+                    for word in words:
+                        if word and word not in launch:
+                            if len(name) > 6 and len(word) < 3:
+                                continue
+                            launch[word] = path
 
     elif app.platform == "windows":
         shortcuts = enum_known_folder(FOLDERID_AppsFolder)
@@ -367,4 +380,4 @@ def on_ready():
 
 
 # NOTE: please update this from "launch" to "ready" in Talon v0.1.5
-app.register("launch", on_ready)
+app.register("ready", on_ready)
