@@ -77,6 +77,12 @@ def function_key(m) -> str:
     return m.function_key
 
 
+@mod.capture(rule="( <self.letter> | <self.number_key> | <self.symbol_key> )")
+def any_alphanumeric_key(m) -> str:
+    "any alphanumeric key"
+    return str(m)
+
+
 @mod.capture(
     rule="( <self.letter> | <self.number_key> | <self.symbol_key> "
     "| <self.arrow_key> | <self.function_key> | <self.special_key> )"
@@ -109,7 +115,7 @@ def letters(m) -> str:
 
 
 ctx = Context()
-ctx.lists["self.modifier_key"] = {
+modifier_keys = {
     # If you find 'alt' is often misrecognized, try using 'alter'.
     "alter":   "alt",
     'troll': 'ctrl',
@@ -121,6 +127,10 @@ ctx.lists["self.modifier_key"] = {
     #"option": "alt",
     #"shift": "shift",  
 }
+if app.platform  == "mac":
+    modifier_keys["command"] = "cmd"
+    modifier_keys["option"] = "alt"
+ctx.lists["self.modifier_key"] = modifier_keys
 alphabet = dict(zip(default_alphabet, letters_string))
 ctx.lists["self.letter"] = alphabet
 
@@ -130,10 +140,13 @@ ctx.lists["self.letter"] = alphabet
 punctuation_words = {
     # TODO: I'm not sure why we need these, I think it has something to do with
     # Dragon. Possibly it has been fixed by later improvements to talon? -rntz
-    "`": "`", ",": ",", # <== these things
+    "`": "`",
+    ",": ",",  # <== these things
     "back tick": "`",
+    "grave": "`",
     "comma": ",",
     "period": ".",
+    "full stop": ".",
     "semicolon": ";",
     "colon": ":",
     "forward slash": "/",
@@ -152,6 +165,7 @@ punctuation_words = {
 symbol_key_words = {
     # "dot": ".",
     "quote": "'",
+    "apostrophe": "'",
     "L square": "[",
     "left square": "[",
     "square": "[",
@@ -224,14 +238,17 @@ alternate_keys = {
     # "backspace": "backspace",
     "sword": "delete",
     #'junk': 'backspace',
+    "page up": "pageup",
+    "page down": "pagedown",
 }
 # mac apparently doesn't have the menu key.
 if app.platform in ("windows", "linux"):
     alternate_keys["menu key"] = "menu"
+    alternate_keys["print screen"] = "printscr"
 
-keys = {k: k for k in simple_keys}
-keys.update(alternate_keys)
-ctx.lists["self.special_key"] = keys
+special_keys = {k: k for k in simple_keys}
+special_keys.update(alternate_keys)
+ctx.lists["self.special_key"] = special_keys
 ctx.lists["self.function_key"] = {
     f"fox {default_f_digits[i]}": f"f{i + 1}" for i in range(12)
 }
