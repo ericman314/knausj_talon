@@ -142,7 +142,7 @@ punctuation_words = {
     "exclamation point": "!",
     "dollar sign": "$",
     "asterisk": "*",
-    "hash sign": "#",
+    # "hash sign": "#",
     "number sign": "#",
     "percent sign": "%",
     "at sign": "@",
@@ -150,7 +150,7 @@ punctuation_words = {
     "ampersand": "&",
 }
 symbol_key_words = {
-    "dot": ".",
+    # "dot": ".",
     "quote": "'",
     "L square": "[",
     "left square": "[",
@@ -186,11 +186,11 @@ symbol_key_words = {
     "greater than": ">",
     "star": "*",
     "pound": "#",
-    "hash": "#",
+    # "hash": "#",
     "percent": "%",
     "caret": "^",
     "amper": "&",
-    "pipe": "|",
+    # "pipe": "|",
     "dubquote": '"',
     "double quote": '"',
 }
@@ -221,8 +221,8 @@ simple_keys = [
 
 alternate_keys = {
     'back':'backspace',
-    "backspace": "backspace",
-    "delete": "delete",
+    # "backspace": "backspace",
+    "sword": "delete",
     #'junk': 'backspace',
 }
 # mac apparently doesn't have the menu key.

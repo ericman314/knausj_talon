@@ -21,15 +21,7 @@ cd:
 
 function:
   insert('function () {}')
-  key(left enter up end left left left left)
-  
-index:
-  insert('[]')
-  key(left)
-
-block:
-  insert('{}')
-  key(left enter)
+  key(left enter up end left left left left)  
 
 anonymous function:
   insert('() => {}')
@@ -71,10 +63,10 @@ locks:
 rocks:
   insert(']')
 
-lace:
+lazz:
   insert('{')
 
-race:
+razz:
   insert('}')
 
 comment:
@@ -101,7 +93,7 @@ jump <user.text>:
   key(home)
   key(ctrl-f)
   insert(user.text)
-  sleep(100ms)
+  sleep(200ms)
   key(escape)
   key(left)
 
@@ -118,6 +110,9 @@ nuller:
 
 spread:
   insert('...')
+
+pipe:
+  insert('|')
 
 console log:
   insert('console.log()')
@@ -159,6 +154,9 @@ quick open:
 file open:
   key(ctrl-o)
 
+file new:
+  key(ctrl-n)
+
 to do:
   insert('TODO: ')
 
@@ -197,6 +195,9 @@ format selection:
   insert('format selection')
   key(enter)
 
+format document:
+  key(ctrl-shift-i)
+
 hold alter:
   key(alt:down)
 
@@ -223,3 +224,6 @@ square root:
 
 throw error:
   insert('throw new Error(\'')
+
+zap line:
+  key("ctrl-shift-k")
