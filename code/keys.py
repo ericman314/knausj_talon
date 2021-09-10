@@ -143,7 +143,7 @@ punctuation_words = {
     "`": "`",
     ",": ",",  # <== these things
     "back tick": "`",
-    "grave": "`",
+    # "grave": "`",
     "comma": ",",
     "period": ".",
     "full stop": ".",
@@ -171,7 +171,7 @@ symbol_key_words = {
     "square": "[",
     "R square": "]",
     "right square": "]",
-    "slash": "/",
+    "ramp": "/",
     "backslash": "\\",
     "minus": "-",
     "dash": "-",

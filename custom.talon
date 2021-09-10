@@ -76,6 +76,10 @@ for loop index:
   insert('for (let i = 0; ; i++ ) {}')
   key(left enter up end left left left left left left left left left)
  
+for loop integer:
+  insert('for (int i = 0; ; i++ ) {}')
+  key(left enter up end left left left left left left left left left)
+ 
 for loop in:
   insert('for (let  in ) {}')
   key(left enter up end left left left left left left left)
@@ -89,6 +93,16 @@ jump line <number>:
   insert(number)
   key(enter)
 
+go up <number_small>:
+  edit.up()
+  repeat(number_small - 1)
+  key(home)
+    
+go down <number_small>:
+  edit.down()
+  repeat(number_small - 1)
+  key(home)
+
 jump <user.text>:
   key(home)
   key(ctrl-f)
@@ -99,6 +113,12 @@ jump <user.text>:
 
 jump bracket:
   key(ctrl-shift-\)
+
+jump symbol <user.text>:
+  key(ctrl-p)
+  sleep(200ms)
+  insert('@')
+  insert(user.text)
 
 select bracket:
   key(ctrl-shift-p)
