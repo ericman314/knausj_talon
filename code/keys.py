@@ -7,7 +7,7 @@ import sys
 #     " "
 # )
 
-default_alphabet = "alpha bravo charlie delta echo foxtrot golf hotel india juliet kilo lima mike November oscar papa quebec romeo sierra tango uniform victor whiskey plex yankee zulu".split(
+default_alphabet = "alpha bravo charlie delta echo foxtrot golf hotel india juliet kilo lima mike November oscar papa quebec romeo Sarah tango uniform victor whiskey plex yankee zulu".split(
     " "
 )
 letters_string = "abcdefghijklmnopqrstuvwxyz"

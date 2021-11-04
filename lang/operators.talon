@@ -37,7 +37,7 @@ op mod equals: user.code_operator_modulo_assignment()
 (op | is) in: user.code_operator_in()
 
 #logical operators
-(op | logical) and: user.code_operator_and()
+# (op | logical) and: user.code_operator_and()
 (op | logical) or: user.code_operator_or()
 
 #bitwise operators

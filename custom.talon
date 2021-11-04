@@ -107,7 +107,7 @@ jump <user.text>:
   key(home)
   key(ctrl-f)
   insert(user.text)
-  sleep(200ms)
+  sleep(400ms)
   key(escape)
   key(left)
 
@@ -170,6 +170,7 @@ search <user.text>:
   
 quick open:
   key(ctrl-p)
+  sleep(400ms)
 
 file open:
   key(ctrl-o)
@@ -247,3 +248,7 @@ throw error:
 
 zap line:
   key("ctrl-shift-k")
+
+open recent:
+  key(ctrl-r)
+  sleep(400ms)
