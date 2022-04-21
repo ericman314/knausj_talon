@@ -36,7 +36,12 @@ return:
 
 block if:
   insert('if () {}')
-  key(left enter up end left left left)
+  key(left)
+  sleep(100ms)
+  key(enter)
+  sleep(100ms)
+  key("ctrl-shift-k")
+  key(up end left left left)
   
 inline if:
   insert('if () ')
@@ -114,11 +119,10 @@ jump <user.text>:
 jump bracket:
   key(ctrl-shift-\)
 
-jump symbol <user.text>:
+jump symbol:
   key(ctrl-p)
   sleep(200ms)
   insert('@')
-  insert(user.text)
 
 select bracket:
   key(ctrl-shift-p)
@@ -185,7 +189,7 @@ tick:
   insert('`')
 
 window snap top right:
-  key("ctrl-alt-9")
+  key("ctrl-numpad_9")
 
 window snap top left:
   key("ctrl-alt-7")
@@ -252,3 +256,50 @@ zap line:
 open recent:
   key(ctrl-r)
   sleep(400ms)
+
+insert row above:
+  key(alt-i)
+  sleep(200ms)
+  key(alt-r)
+  sleep(200ms)
+  key(alt-r)
+
+insert row below:
+  key(alt-i)
+  sleep(200ms)
+  key(alt-r)
+  sleep(200ms)
+  key(alt-b)
+
+break:
+  key(ctrl-c)
+
+screen down:
+  key(ctrl-alt-down)
+
+screen up:
+  key(ctrl-alt-up)
+
+move screen down:
+    key(ctrl-alt-shift-down)
+
+move screen up:
+  key(ctrl-alt-shift-up)
+
+go column <number>:
+  # key(home)
+  # key(right)
+  # key(home)
+  # key(home)
+  # key(right)
+  # repeat(number - 1)
+  key(ctrl-shift-p)
+  insert('jump to column')
+  sleep(300ms)
+  key(enter)
+  sleep(300ms)
+  insert(number)
+  key(enter)
+
+run to cursor:
+  key(ctrl-f10)
