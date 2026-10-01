@@ -145,6 +145,7 @@ punctuation_words = {
     "back tick": "`",
     # "grave": "`",
     "comma": ",",
+    "coma": ",",
     "period": ".",
     "full stop": ".",
     "semicolon": ";",
